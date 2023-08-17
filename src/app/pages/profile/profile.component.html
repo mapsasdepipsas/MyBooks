@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBooks - Profile</title>
+</head>
+<body>
+    <app-header></app-header>
+    
+    <!-- controlador a vista-->
+<div class="padre">
+    <div class="datos">
+        <img class="imagen" src="{{miUsuario.photo}}">
+        <h3 class="h3datos">{{miUsuario.name}} {{miUsuario.last_name}}</h3>
+        <p>Id: {{miUsuario.Id_user}}</p>
+        <p>Nombre: {{miUsuario.name}}</p>
+        <p>Apellidos: {{miUsuario.last_name}}</p>
+        <p>Email: {{miUsuario.email}}</p>
+        <p>Contraseña: {{miUsuario.password}}</p>
+    </div> 
+
+    <!-- inputs
+        1 forma<input type="text" [value]="miUsuario.name">
+        Otra forma<input type="text" value= "{{miUsuario.name}}">
+    -->
+
+    <!--vista a controlador-->
+    <div class="cambiodatos">
+        <h3 class="h3">Actualiza tus datos</h3>
+        <input class="input" type="text" #inputPhoto placeholder="Link foto">
+        <input class="input" type="number" #inputId placeholder="User ID">
+        <input class="input" type="text" #inputName placeholder="Nombre">
+        <input class="input" type="text" #inputLastName placeholder="Apellidos">
+        <input class="input" type="text" #inputEmail placeholder="Email">
+        <input class="input" type="text" #inputPassword placeholder="Contraseña">
+        <button class="boton" (click) = "cambiardatos(inputId, inputName, inputLastName, inputEmail, inputPhoto, inputPassword)">Actualizar usuario</button>
+    </div>
+</div>
+<app-footer></app-footer>
+    
+</body>
+</html>
