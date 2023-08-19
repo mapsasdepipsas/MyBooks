@@ -9,6 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormRegisterComponent } from './component/form-register/form-register.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BooksComponent } from './pages/books/books.component';
+import { FormsModule } from '@angular/forms';
+import { IdbookPipe } from './pipes/idbook.pipe';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormRegisterComponent,
     RegisterComponent,
     ProfileComponent,
+    BooksComponent,
+    IdbookPipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule //añadimos esto para poder usar ngModel en los inputs del formulario de la pagina books
   ],
   providers: [],
   bootstrap: [AppComponent]

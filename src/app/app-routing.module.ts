@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BooksComponent } from './pages/books/books.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'}, //para que home sea la que aparezca por defecto
   {path: "home", component: HomeComponent},
+  {path: "books", component: BooksComponent},
   {path: "register", component: RegisterComponent},
   {path: "profile", component: ProfileComponent}
 ];

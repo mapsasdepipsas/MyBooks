@@ -16,7 +16,8 @@
 
 .home,
 .register,
-.profile {
+.profile,
+.books {
     text-decoration: none;
     color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
@@ -26,14 +27,16 @@
 
 .home:active,
 .register:active,
-.profile:active {
+.profile:active,
+.books:active {
     color: rgb(151, 150, 150);
     position: relative;
 }
 
 .home::after,
 .register::after,
-.profile::after {
+.profile::after,
+.books::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -46,6 +49,7 @@
 
 .home:hover::after,
 .register:hover::after,
-.profile:hover::after {
+.profile:hover::after,
+.books:hover::after {
     width: 100%;
 }
