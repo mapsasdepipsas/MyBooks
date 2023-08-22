@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from 'src/app/models/book';
+import { EventEmitter } from '@angular/core';
+import { Output } from '@angular/core';
 
 
 @Component({
@@ -10,6 +12,8 @@ import { Book } from 'src/app/models/book';
 export class BooksComponent {
   books: Book[] = [];
   newBook: Book = new Book(0, 0, '', '', '', '', '');
+  @Output() cardborrada: EventEmitter <void> = new EventEmitter<void>();
+  //con el decorador output, el componente hijo (card) puede emitir eventos hacia su padre (books) (M3.4)
 
   ngOnInit(): void {
 
@@ -27,6 +31,14 @@ export class BooksComponent {
     if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
       this.books.push(this.newBook); // añadir libro
       this.newBook = new Book(0, 0, '', '', '', '', ''); // cuando se añada, limpiar formulario
+    }
+  }
+
+//creamos metodo para que el boton tenga funcionalidad y borre la card(M3.4)
+  borrarcard(book: any){
+    let index = this.books.indexOf(book);
+    if(index != -1){
+      this.books.splice(index,1);
     }
   }
 }

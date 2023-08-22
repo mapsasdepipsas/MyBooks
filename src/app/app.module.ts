@@ -12,6 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { BooksComponent } from './pages/books/books.component';
 import { FormsModule } from '@angular/forms';
 import { IdbookPipe } from './pipes/idbook.pipe';
+import { CardComponent } from './component/card/card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { IdbookPipe } from './pipes/idbook.pipe';
     ProfileComponent,
     BooksComponent,
     IdbookPipe,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,19 +10,12 @@
 
 <div class="padre">
 <div *ngIf="books.length > 0; else mensajeNoBooks"> <!--si el array books esta vacio saldra el valor de mensajeNoBooks-->
+
+
   <div class="card-container">
-    <div class="card" *ngFor="let book of books; let even = even" [ngClass]="{ 'even-card': even, 'odd-card': !even }">
-      <!--iteramos sobre el array books con ngfor // creamos variable even sera true si la card es even y false si odd // ngclass para que si la card es par(true) se llame 'even-card' y si es impar(false) sera 'odd-card'-->
-      <img [src]="book.photo"/>
-      <h3>{{ book.title }}</h3>
-      <p>Id Book: {{ book.id_book | idbook }}</p> <!--pipe (| idbook) para que salga Ref- y el numero del id-->
-      <p>Id User: {{ book.id_user }}</p>
-      <p>Type: {{ book.type }}</p>
-      <p>Author: {{ book.author }}</p>
-      <p>Price: {{ book.price }}€</p>
-      <button [ngClass]="{'buy-button-even' : even, 'buy-button-odd' : !even}">Comprar</button>
-      <!--volvemos a let even = even. si la card es even, el boton se llamara 'buy-button-even, si no lo es sera 'buy-button-odd'-->
-    </div>
+    <!--aqui añadimos un ngfor para pasar los datos del padre (books) al hijo (card)  Retos 3.4-->
+    <app-card *ngFor="let book of books; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard(book)"></app-card>
+
   </div>
 </div>
 
@@ -58,7 +51,8 @@
   
 
 <ng-template #mensajeNoBooks>
-  <p>No hay libros disponibles.</p>
+  <p>No hay libros disponibles :(</p>
+  <p>Añade tus libros rellenando el formulario :)</p>
 </ng-template>
 <!--este es el valor de mensajeNoBooks, si array books esta vacio saldra el mensaje-->
 
