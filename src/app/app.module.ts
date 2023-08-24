@@ -13,6 +13,8 @@ import { BooksComponent } from './pages/books/books.component';
 import { FormsModule } from '@angular/forms';
 import { IdbookPipe } from './pipes/idbook.pipe';
 import { CardComponent } from './component/card/card.component';
+import { AddbookComponent } from './pages/addbook/addbook.component';
+import { UpdateBookComponent } from './pages/update-book/update-book.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { CardComponent } from './component/card/card.component';
     BooksComponent,
     IdbookPipe,
     CardComponent,
+    AddbookComponent,
+    UpdateBookComponent,
   ],
   imports: [
     BrowserModule,

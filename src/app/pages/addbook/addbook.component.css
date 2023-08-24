@@ -1,0 +1,61 @@
+.padre{
+  background-image: url(../../../assets/img/fondoimglibr.jpg);
+  background-size: cover; /* fondo imagen entero */
+  background-position: center; /* imagen centro */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 10vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+    .form form {
+      width: 200px;
+    }
+    
+
+    .form h2,
+    .form input,
+    .form label{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form label{
+      font-weight: bold;
+    }
+    
+    .form input{
+      background-color: rgba(0, 0, 0, 0.5);
+      color: aliceblue;
+      width: 30vh;
+      height: 5vh;
+      border-radius: 1vh;
+      margin-bottom: 2vh;
+    }
+
+    .form h2{
+      margin-bottom: 2vh;
+    }
+
+    .form button{
+      margin-top: 3vh;
+      width: 90%;
+      height: 5vh;
+      border-radius: 5vh;
+      background-color: rgb(116, 160, 95);
+      color: aliceblue;
+      transition: background-color 0.3s ease;
+    } 
+    
+    .form button:hover {
+      background-color: rgb(76, 138, 76);
+      color: black;
+      text-decoration: underline;
+    }

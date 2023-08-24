@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddBook</title>
+</head>
+<body>
+
+  <div class="padre">
+    <app-header></app-header>
+
+    <div class="form">
+        <h2>Añade tus libros</h2>
+        <form (submit)="addlibro()">
+          <label for="imagen">URL imagen</label>
+          <input type="text" id="imagen" name="imagen" [(ngModel)]="newBook.photo" required>
+          <!--ngmodel se usa para vincular el valor que le damos a xejem. newbook.photo con esa propiedad-->
+          
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" [(ngModel)]="newBook.title" required>
+    
+          <label for="id_book">Id Book</label>
+          <input type="number" id="id_book" name="id_book" [(ngModel)]="newBook.id_book">
+    
+          <label for="id_user">Id User</label>
+          <input type="number" id="id_user" name="id_user" [(ngModel)]="newBook.id_user">
+    
+          <label for="type">Type</label>
+          <input type="text" id="type" name="type" [(ngModel)]="newBook.type" required>
+    
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" [(ngModel)]="newBook.author" required>
+    
+          <label for="price">Price</label>
+          <input type="text" id="price" name="price" [(ngModel)]="newBook.price" required>
+      
+          <button type="submit">Añadir libro</button>
+        </form>
+      </div>
+    </div>
+    <app-footer></app-footer>
+</body>
+</html>

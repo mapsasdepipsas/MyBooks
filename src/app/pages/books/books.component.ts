@@ -1,35 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
-
+import { BooksService } from 'src/app/shared/books.service';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/alert.service'; //para cuando dsps de editar y se busque el libro, no aparezca
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
-export class BooksComponent {
+export class BooksComponent implements OnInit {
   books: Book[] = [];
   newBook: Book = new Book(0, 0, '', '', '', '', '');
   @Output() cardborrada: EventEmitter <void> = new EventEmitter<void>();
   //con el decorador output, el componente hijo (card) puede emitir eventos hacia su padre (books) (M3.4)
+  librosfiltrados: Book[] = []; //creamos librosfiltrados para guardar los libros que contengan el idbook que introducimos en el buscador
+  buscarid: number | undefined;
 
-  ngOnInit(): void {
+constructor(private booksService: BooksService, private router: Router, private alertService: AlertService){}
 
-    this.books = [
-      new Book(7409, undefined,"La casa de los espíritus", "Realismo mágico", "Isabel Allende", "12", "../../../assets/img/casaespiritus.jpg"),
-      new Book(3945, 304, "Al Faro", "Novela", "Virginia Woolf", "14", "../../../assets/img/alfaro.jpeg"),
-      new Book(3945, 304, "Balada de pájaros cantores y serpientes", "Ficción", "Suzanne Collins", "19", "../../../assets/img/baladapajaros.jpg"),
-      new Book(undefined, 304, "The Bluest Eye", "Bildungsroman", "Toni Morrison", "14", "../../../assets/img/thebluesteye.jpg"),
+ngOnInit(): void{
+  this.books = this.booksService.getAll(); //llamamos a getall(esta en el service) para mostrar libros del array
+  this.librosfiltrados = this.books; //igualamos libros filtrados a books, para que busque ahi
+}
 
-    ];
-  }
-  //en vez de usar ngoninit tambien podriamos hacerlo metiendo el array books en el constructor, pero es mas recomendable hacerlo en ngoninit
 
   addlibro() {
     if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
-      this.books.push(this.newBook); // añadir libro
+      this.booksService.add(this.newBook); // añadir libro //llamamos a add (esta en el servicio) para que el libro que añadamos desde form aparezca en books
       this.newBook = new Book(0, 0, '', '', '', '', ''); // cuando se añada, limpiar formulario
     }
   }
@@ -40,5 +40,24 @@ export class BooksComponent {
     if(index != -1){
       this.books.splice(index,1);
     }
+  }
+
+  filtrarlibros(): void{
+    if(this.buscarid != undefined){
+      let librofiltrado = this.booksService.getOne(this.buscarid);
+      if(librofiltrado && !this.editarlibro(librofiltrado)){
+        this.alertService.alerta1("No se ha encontrado el libro editado")
+      }
+      this.librosfiltrados = [librofiltrado]
+    }else{
+      this.librosfiltrados = this.books
+    }
+  }
+  
+  editarlibro(book:Book): boolean{
+    let editado = this.booksService.edit(book);
+    if(editado){
+      this.router.navigate(['/books'])
+    } return editado;
   }
 }

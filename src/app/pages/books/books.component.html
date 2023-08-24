@@ -8,45 +8,37 @@
 <body>
     <app-header></app-header>
 
-<div class="padre">
+    <!--añadimos el buscador por id_book(M3.5)-->
+    <div class="padre">
+   
+    <div class="container">
+      <!--el input de abajo para añadirle al buscador funcionalidad creada en el ts-->
+      <input type="text" name="text" class="input" required="" placeholder="Busca tu libro por su id" [(ngModel)]="buscarid" (click)="filtrarlibros()">
+      <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+              <title>Search</title>
+              <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+          </svg>
+      </div>
+  </div>
+
+
+
 <div *ngIf="books.length > 0; else mensajeNoBooks"> <!--si el array books esta vacio saldra el valor de mensajeNoBooks-->
 
 
   <div class="card-container">
     <!--aqui añadimos un ngfor para pasar los datos del padre (books) al hijo (card)  Retos 3.4-->
-    <app-card *ngFor="let book of books; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard(book)"></app-card>
+    <!--modificamos el ngfor para que el buscador funcione-->
+    <app-card *ngFor="let book of librosfiltrados; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard(book)">
+      
+    </app-card>
 
   </div>
 </div>
 
-<div class="form">
-    <h2>Añade tus libros</h2>
-    <form (submit)="addlibro()">
-      <label for="imagen">URL imagen</label>
-      <input type="text" id="imagen" name="imagen" [(ngModel)]="newBook.photo" required>
-      <!--ngmodel se usa para vincular el valor que le damos a xejem. newbook.photo con esa propiedad-->
-      
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" [(ngModel)]="newBook.title" required>
 
-      <label for="id_book">Id Book</label>
-      <input type="number" id="id_book" name="id_book" [(ngModel)]="newBook.id_book">
-
-      <label for="id_user">Id User</label>
-      <input type="number" id="id_user" name="id_user" [(ngModel)]="newBook.id_user">
-
-      <label for="type">Type</label>
-      <input type="text" id="type" name="type" [(ngModel)]="newBook.type" required>
-
-      <label for="author">Author</label>
-      <input type="text" id="author" name="author" [(ngModel)]="newBook.author" required>
-
-      <label for="price">Price</label>
-      <input type="text" id="price" name="price" [(ngModel)]="newBook.price" required>
-  
-      <button type="submit">Añadir libro</button>
-    </form>
-  </div>
 </div>
   
 

@@ -14,7 +14,10 @@
             <p>Type: {{ book.type }}</p>
             <p>Author: {{ book.author }}</p>
             <p>Price: {{ book.price }}€</p>
-            <button [ngClass]="{'buy-button-even' : even, 'buy-button-odd' : !even}">Comprar</button>
+            <div class="botonesabajo">
+                <button [ngClass]="{'buy-button-even' : even, 'buy-button-odd' : !even}">Comprar</button>
+                <button class="modificar" (click)="navigateToUpdateBook(book.id_book)">Modificar</button>
+            </div>
         </div>
     </div>
 </div>
