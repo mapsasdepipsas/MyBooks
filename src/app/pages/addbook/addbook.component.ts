@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/shared/books.service';
-import { AlertService } from 'src/app/alert.service'; //importamos el servicio de alertas
+//import { AlertService } from 'src/app/alert.service'; //importamos el servicio de alertas
+import { ToastrService } from 'ngx-toastr';
+import { HeaderpagService } from 'src/app/shared/headerpag.service';
 
 @Component({
   selector: 'app-addbook',
@@ -15,15 +17,17 @@ export class AddbookComponent {
 
   newBook: Book = new Book(0, 0, '', '', '', '', '');
 
-  constructor(private BooksService: BooksService, private alertService: AlertService){}
+  constructor(private BooksService: BooksService, private toastr: ToastrService, private pageService: HeaderpagService){}
 
   addlibro() {
     if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
-      this.BooksService.add(this.newBook); // añadir libro //cambiamos a this.BooksService para que se añada al servicio
-      this.newBook = new Book(0, 0, '', '', '', '', ''); // cuando se añada, limpiar formulario
-    
-      this.alertService.alerta1("Libro añadido :)") //añadimos la alerta
+      this.BooksService.add(this.newBook);
+      this.newBook = new Book(0, 0, '', '', '', '', '');
+      this.toastr.success('Libro añadido :)');
     }
+  }
+  ngOnInit() {
+    this.pageService.setCurrentPage('books');
   }
 
 //creamos metodo para que el boton tenga funcionalidad y borre la card(M3.4)

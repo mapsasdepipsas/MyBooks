@@ -1,0 +1,5 @@
+.padre{
+    background-image: url(../../../assets/img/fotofondologin.jpg);
+    background-size: cover; /* fondo imagen entero */
+    background-position: center; /* imagen centro */
+  }

@@ -74,3 +74,16 @@ padding: 15px;
           background-color: grey;
           transition: 1s, 0.5ms;
         }
+
+
+  /* Inputs y validaciones cuando error */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+.mensajeError{
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}

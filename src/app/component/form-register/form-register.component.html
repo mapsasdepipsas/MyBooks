@@ -1,28 +1,58 @@
 <div class="padre">
     <div class="contenedorform">
-        <form class="form">
+        <form [formGroup]="registerForm" class="form">
+        <h3 class="h3">¡Únete a nosotros!</h3>
 
-            <h3 class="h3">¡Únete a nosotros!</h3>
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre" placeholder="Escribe tu nombre">
+        <div class="mensajeError" *ngIf="registerForm.get('nombre').hasError('required') && (registerForm.get('nombre').dirty || registerForm.get('nombre').touched)">
+            Nombre es obligatorio.
+        </div>
 
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" formControlName="apellidos" placeholder="Ahora tus apellidos">
+        <div class="mensajeError" *ngIf="registerForm.get('apellidos').hasError('required') && (registerForm.get('apellidos').dirty || registerForm.get('apellidos').touched)">
+            Apellidos son obligatorios.
+        </div>
 
-            <label for="apellidos">Apellidos</label>
-            <input type="text" name="apellidos" id="apellidos" placeholder="Ahora tus apellidos">
+        <label for="email">Email</label>
+        <input type="text" formControlName="email" placeholder="Turno del email">
+        <div class="mensajeError" *ngIf="registerForm.get('email').hasError('required') && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+            Email es obligatorio.
+        </div>
+        <div *ngIf="registerForm.get('email').hasError('email') && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+            El correo debe tener una @.
+        </div>
 
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Turno del email">
+        <label for="url">URL</label>
+        <input type="url" formControlName="url" placeholder="Introduce una url">
+        <div  class="mensajeError" *ngIf="registerForm.get('url').hasError('required') && (registerForm.get('url').dirty || registerForm.get('url').touched)">
+            URL es obligatoria.
+        </div>
+        <div class="mensajeError" *ngIf="registerForm.get('url').hasError('pattern') && (registerForm.get('url').dirty || registerForm.get('url').touched)">
+            La URL debe empezar con http o https.
+        </div>
 
-            <label for="url">URL</label>
-            <input type="url" name="url" id="url" placeholder="Introduce una url">
+        <label for="contra">Contraseña</label>
+        <input type="password" formControlName="contra" placeholder="Crea una contraseña">
+        <div  class="mensajeError" *ngIf="registerForm.get('contra').hasError('required') && (registerForm.get('contra').dirty || registerForm.get('contra').touched)">
+            Contraseña es obligatoria.
+        </div>
+        <div class="mensajeError" *ngIf="registerForm.get('contra').hasError('minlength') && (registerForm.get('contra').dirty || registerForm.get('contra').touched)">
+            Debe tener minimo 8 caracteres.
+        </div>
+        <div class="mensajeError" *ngIf="registerForm.get('contra').hasError('pattern') && (registerForm.get('contra').dirty || registerForm.get('contra').touched)">
+            Debe contener al menos una mayúscula.
+        </div>
 
-            <label for="contra">Contraseña</label>
-            <input type="text" name="contra" id="contra" placeholder="Crea una contraseña">
-
-            <label for="repcontra">Repite tu contraseña</label>
-            <input type="text" name="repcontra" id="repcontra" placeholder="Tienes que repetirla😔">
-
-            <button class="boton">Registrarse</button>
-        </form>
+        <label for="repcontra">Repite tu contraseña</label>
+    <input type="password" formControlName="repcontra" placeholder="Tienes que repetirla😔">
+    <div class="mensajeError" *ngIf="registerForm.get('repcontra').hasError('nocoincide') && (registerForm.get('repcontra').dirty || registerForm.get('repcontra').touched)">
+        Las contraseñas no coinciden.
     </div>
+
+        <button class="boton" [disabled]="!registerForm.valid">Registrarse</button>
+    </form>
 </div>
+</div>
+

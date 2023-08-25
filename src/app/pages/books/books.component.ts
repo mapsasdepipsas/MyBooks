@@ -5,6 +5,7 @@ import { Output } from '@angular/core';
 import { BooksService } from 'src/app/shared/books.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/alert.service'; //para cuando dsps de editar y se busque el libro, no aparezca
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-books',
@@ -19,7 +20,7 @@ export class BooksComponent implements OnInit {
   librosfiltrados: Book[] = []; //creamos librosfiltrados para guardar los libros que contengan el idbook que introducimos en el buscador
   buscarid: number | undefined;
 
-constructor(private booksService: BooksService, private router: Router, private alertService: AlertService){}
+constructor(private booksService: BooksService, private router: Router, private alertService: AlertService, private toastr: ToastrService){}
 
 ngOnInit(): void{
   this.books = this.booksService.getAll(); //llamamos a getall(esta en el service) para mostrar libros del array
@@ -31,6 +32,7 @@ ngOnInit(): void{
     if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
       this.booksService.add(this.newBook); // añadir libro //llamamos a add (esta en el servicio) para que el libro que añadamos desde form aparezca en books
       this.newBook = new Book(0, 0, '', '', '', '', ''); // cuando se añada, limpiar formulario
+      this.toastr.success("Libro añadido :)")
     }
   }
 
@@ -40,6 +42,7 @@ ngOnInit(): void{
     if(index != -1){
       this.books.splice(index,1);
     }
+    this.toastr.success("Card borrada")
   }
 
   filtrarlibros(): void{
