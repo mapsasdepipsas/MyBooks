@@ -18,7 +18,7 @@ export class BooksComponent implements OnInit {
   @Output() cardborrada: EventEmitter <void> = new EventEmitter<void>();
   //con el decorador output, el componente hijo (card) puede emitir eventos hacia su padre (books) (M3.4)
   librosfiltrados: Book[] = []; //creamos librosfiltrados para guardar los libros que contengan el idbook que introducimos en el buscador
-  buscarid: number | undefined;
+  buscarid: number;
 
 constructor(private booksService: BooksService, private router: Router, private alertService: AlertService, private toastr: ToastrService){}
 
@@ -42,20 +42,34 @@ ngOnInit(): void{
     if(index != -1){
       this.books.splice(index,1);
     }
-    this.toastr.success("Card borrada")
+    this.toastr.info("Libro borrado")
   }
 
-  filtrarlibros(): void{
-    if(this.buscarid != undefined){
+  libronoencontrado(){
+    this.toastr.warning("El libro no existe :(")
+  }
+
+  filtrarlibros(): void {
+    if (this.buscarid !== undefined) {
       let librofiltrado = this.booksService.getOne(this.buscarid);
-      if(librofiltrado && !this.editarlibro(librofiltrado)){
-        this.alertService.alerta1("No se ha encontrado el libro editado")
+  
+      if (librofiltrado && !this.editarlibro(librofiltrado)) {
+        this.alertService.alerta1("No se ha encontrado el libro editado");
+        this.libronoencontrado();
+        this.librosfiltrados = [];
+
+      } else if (librofiltrado) {
+        this.librosfiltrados = [librofiltrado];
+
+      } else {
+        this.librosfiltrados = [];
+        this.libronoencontrado();
       }
-      this.librosfiltrados = [librofiltrado]
-    }else{
-      this.librosfiltrados = this.books
+    } else {
+      this.librosfiltrados = this.books;
     }
   }
+  
   
   editarlibro(book:Book): boolean{
     let editado = this.booksService.edit(book);

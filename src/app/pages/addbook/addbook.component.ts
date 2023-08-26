@@ -3,7 +3,7 @@ import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/shared/books.service';
 //import { AlertService } from 'src/app/alert.service'; //importamos el servicio de alertas
 import { ToastrService } from 'ngx-toastr';
-import { HeaderpagService } from 'src/app/shared/headerpag.service';
+import { HeaderpagService } from 'src/app/shared/headerpag.service'; //xra que marque en header en que pagina me encuentro
 
 @Component({
   selector: 'app-addbook',
