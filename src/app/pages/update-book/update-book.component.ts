@@ -19,7 +19,7 @@ export class UpdateBookComponent {
 
   ngOnInit(): void{
     let libroparaact = Number(this.route.snapshot.paramMap.get('id'))
-    this.updateBook = this.booksService.getOne(libroparaact)
+    //this.updateBook = this.booksService.getOne(libroparaact)
   }
   
   

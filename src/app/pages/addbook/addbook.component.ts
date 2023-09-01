@@ -4,6 +4,7 @@ import { BooksService } from 'src/app/shared/books.service';
 //import { AlertService } from 'src/app/alert.service'; //importamos el servicio de alertas
 import { ToastrService } from 'ngx-toastr';
 import { HeaderpagService } from 'src/app/shared/headerpag.service'; //xra que marque en header en que pagina me encuentro
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-addbook',
@@ -17,15 +18,33 @@ export class AddbookComponent {
 
   newBook: Book = new Book(0, 0, '', '', '', '', '');
 
-  constructor(private BooksService: BooksService, private toastr: ToastrService, private pageService: HeaderpagService){}
+  constructor(private BooksService: BooksService, private toastr: ToastrService, private pageService: HeaderpagService, private apiService: BooksService){}
 
-  addlibro() {
-    if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
-      this.BooksService.add(this.newBook);
-      this.newBook = new Book(0, 0, '', '', '', '', '');
-      this.toastr.success('Libro añadido :)');
-    }
-  }
+  addlibro(id_book: HTMLInputElement, id_user: HTMLInputElement, title: HTMLInputElement, type: HTMLInputElement, author: HTMLInputElement, price: HTMLInputElement, photo: HTMLInputElement) {
+    if (id_book.value == ""){
+      alert("Falta un campo obligatorio")
+
+      }else{
+      let nuevolibro: Book = new Book(parseInt(id_book.value), parseInt(id_user.value), title.value, type.value, author.value, price.value, photo.value)
+      this.apiService.postLibros(nuevolibro)
+      .subscribe((resp: Respuesta) =>{
+        if (!resp.error)
+        {
+          alert("Libro insertado correctamente");
+    
+          id_book.value = "0";
+          id_user.value = "0";
+          title.value = "";
+          type.value= "";
+          author.value= "";
+          price.value= "";
+          photo.value= ""
+        }
+        else
+          alert("El libro ya existe")
+      })
+    }}
+
   ngOnInit() {
     this.pageService.setCurrentPage('books');
   }

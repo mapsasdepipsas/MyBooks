@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +17,10 @@ import { UpdateBookComponent } from './pages/update-book/update-book.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormLoginComponent } from './component/form-login/form-login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { Respuesta } from './models/respuesta';//Observables y APIs
 
 
 @NgModule({
@@ -36,17 +38,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddbookComponent,
     UpdateBookComponent,
     LoginComponent,
-    FormLoginComponent,
+    FormLoginComponent
   ],
   imports: [
-    BrowserModule,
+    
     AppRoutingModule,
     FormsModule, //añadimos esto para poder usar ngModel en los inputs del formulario de la pagina books
     ReactiveFormsModule, //para form model driven
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -13,7 +13,7 @@
    
     <div class="container">
       <!--el input de abajo para añadirle al buscador funcionalidad creada en el ts-->
-      <input type="text" name="text" class="input" required="" placeholder="Busca tu libro por su id" [(ngModel)]="buscarid" (click)="filtrarlibros()">
+      <input type="text" name="text" class="input" required="" placeholder="Busca tu libro por su id" [(ngModel)]="buscarid" (click)="mostrarLibro()">
       <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
               <title>Search</title>
@@ -31,8 +31,14 @@
   <div class="card-container">
     <!--aqui añadimos un ngfor para pasar los datos del padre (books) al hijo (card)  Retos 3.4-->
     <!--modificamos el ngfor para que el buscador funcione-->
-    <app-card *ngFor="let book of librosfiltrados; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard(book)">
-      
+    <app-card *ngFor="let book of librosfiltrados; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard($event)">
+      --id_book: {{book.id_book}}
+      --id_user: {{book.id_user}}
+      --title: {{book.title}}
+      --type: {{book.type}}
+      --author: {{book.author}}
+      --price: {{book.price}}
+      --photo: {{book.photo}}
     </app-card>
 
   </div>

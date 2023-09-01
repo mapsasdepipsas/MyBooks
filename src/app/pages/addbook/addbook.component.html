@@ -12,7 +12,7 @@
 
     <div class="form">
         <h2>Añade tus libros</h2>
-        <form (submit)="addlibro()">
+        <form>
           <label for="imagen">URL imagen</label>
           <input type="text" id="imagen" name="imagen" [(ngModel)]="newBook.photo" required>
           <!--ngmodel se usa para vincular el valor que le damos a xejem. newbook.photo con esa propiedad-->
@@ -35,7 +35,7 @@
           <label for="price">Price</label>
           <input type="text" id="price" name="price" [(ngModel)]="newBook.price" required>
       
-          <button type="submit">Añadir libro</button>
+          <button type="submit" (click)="addlibro()" >Añadir libro</button>
         </form>
       </div>
     </div>
