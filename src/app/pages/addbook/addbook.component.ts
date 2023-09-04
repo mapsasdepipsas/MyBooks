@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Respuesta } from 'src/app/models/respuesta';
 import { Book } from 'src/app/models/book';
 import { BooksService } from 'src/app/shared/books.service';
 //import { AlertService } from 'src/app/alert.service'; //importamos el servicio de alertas
 import { ToastrService } from 'ngx-toastr';
-import { HeaderpagService } from 'src/app/shared/headerpag.service'; //xra que marque en header en que pagina me encuentro
-import { Respuesta } from 'src/app/models/respuesta';
+import { HeaderpagService } from 'src/app/shared/headerpag.service';
 
 @Component({
   selector: 'app-addbook',
@@ -15,39 +15,47 @@ import { Respuesta } from 'src/app/models/respuesta';
 
 export class AddbookComponent {
   //cambiamos la ubicacion de todo lo de abajo que antes estaba en books.component.ts a aqui para que el formulario funcione
-
-  newBook: Book = new Book(0, 0, '', '', '', '', '');
-
-  constructor(private BooksService: BooksService, private toastr: ToastrService, private pageService: HeaderpagService, private apiService: BooksService){}
-
-  addlibro(id_book: HTMLInputElement, id_user: HTMLInputElement, title: HTMLInputElement, type: HTMLInputElement, author: HTMLInputElement, price: HTMLInputElement, photo: HTMLInputElement) {
-    if (id_book.value == ""){
-      alert("Falta un campo obligatorio")
-
-      }else{
-      let nuevolibro: Book = new Book(parseInt(id_book.value), parseInt(id_user.value), title.value, type.value, author.value, price.value, photo.value)
-      this.apiService.postLibros(nuevolibro)
-      .subscribe((resp: Respuesta) =>{
-        if (!resp.error)
-        {
-          alert("Libro insertado correctamente");
-    
-          id_book.value = "0";
-          id_user.value = "0";
-          title.value = "";
-          type.value= "";
-          author.value= "";
-          price.value= "";
-          photo.value= ""
-        }
-        else
-          alert("El libro ya existe")
-      })
-    }}
-
-  ngOnInit() {
-    this.pageService.setCurrentPage('books');
+  //newBook: Book = new Book(0, 0, '', '', '', '', '');
+  public mibooks:Book;
+  constructor(private BooksService: BooksService, private toastr: ToastrService, private pageService: HeaderpagService){}
+  ngOnInit(): void {
   }
+  public addlibro(newIdBook:string, newtitulo:string, newtipo:string, newautor:string, newprecio:string, newfoto:string):void{
+    
+    let precioNum = parseInt(newprecio)
+    let IdNum = parseInt(newIdBook)
+
+    let newBook = new Book (IdNum, newtitulo, newtipo, newautor, precioNum, newfoto)
+
+    this.BooksService.add(newBook).subscribe((res:Respuesta)=>{
+     
+      if (!res.error)
+      {
+        this.toastr.success('Libro añadido :)');
+        this.mibooks = res.res_book;
+        console.log(res.res_book);
+        
+      } 
+      else
+          this.toastr.error("No se agregó libro");
+
+     })
+     console.log(this.mibooks);
+  }
+
+}
+
+  //   if (this.newBook.title && this.newBook.type && this.newBook.author && this.newBook.price && this.newBook.photo) {
+  //     this.BooksService.add(this.newBook).subscribe((resp:any) =>{
+  //       console.log(resp.data);
+  //     });;
+  //     this.newBook = new Book(0, 0, '', '', '', '', '');
+  //     this.toastr.success('Libro añadido :)');
+  //   }
+  // }
+  // ngOnInit() {
+  //   this.pageService.setCurrentPage('books');
+  // }
 
 //creamos metodo para que el boton tenga funcionalidad y borre la card(M3.4)
 
@@ -56,5 +64,3 @@ export class AddbookComponent {
     //if(index != -1){
       //this.books.splice(index,1);
     //}
-  
-}

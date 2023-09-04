@@ -1,37 +1,35 @@
-.padre{
+.contenido_Books{
   background-image: url(../../../assets/img/fondolibr2.jpg);
   background-size: cover; /* fondo imagen entero */
   background-position: center; /* imagen centro */
 }
 
-.form {
+.formulario {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-
-    margin-top: 10vh;
     font-family: Arial, Helvetica, sans-serif;
   }
   
-    .form form {
+    .formulario form {
       width: 200px;
     }
     
 
-    .form h2,
-    .form input,
-    .form label{
+    .formulario h1,
+    .formulario input,
+    .formulario label{
       display: flex;
       flex-direction: column;
     }
 
-    .form label{
+    .formulario label{
       font-weight: bold;
     }
     
-    .form input{
+    .formulario input{
       background-color: rgba(0, 0, 0, 0.5);
       color: aliceblue;
       width: 30vh;
@@ -40,14 +38,14 @@
       margin-bottom: 2vh;
     }
 
-    .form h2{
+    .formulario h1{
       margin-bottom: 2vh;
       color: aliceblue;
     }
 
-    .form button{
+    .formulario button{
       margin-top: 3vh;
-      width: 90%;
+      width: 110%;
       height: 5vh;
       border-radius: 5vh;
       background-color: rgb(116, 160, 95);
@@ -55,7 +53,7 @@
       transition: background-color 0.3s ease;
     } 
     
-    .form button:hover {
+    .formulario button:hover {
       background-color: rgb(76, 138, 76);
       color: black;
       text-decoration: underline;

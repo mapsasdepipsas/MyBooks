@@ -1,44 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AddBook</title>
-</head>
-<body>
 
-  <div class="padre">
-    <app-header></app-header>
-
-    <div class="form">
+  <!-- <div class="padre">
+    <app-header></app-header> --no hace falta-->
+    <div class="contenido_Books">
+      <div class="formulario">
+          <form>
+              <div class="form1">
+                  <div class="tituloForm"><h1>Añadir Libro</h1></div>
+              </div>
+         
+              <div class="formEditar">
+                  <input type="text" placeholder="ID Book" #id >
+                          
+                  <input type="text" placeholder="Título" #title >
+                        
+                  <input type="text" placeholder="Tapa blanda/dura" #type>
+          
+                  <input type="text" placeholder="Autor" #author>
+          
+                  <input type="number" placeholder="Precio" #price>
+          
+                  <input type="text" placeholder="Foto" #photo>
+              </div>
+  
+          </form>
+  
+          <div class="botonesFormulario">
+              <button  type="button" class="botonesFormulario-function" (click)="addlibro(id.value, title.value, type.value, author.value, price.value, photo.value)">Insertar Libro</button>
+          </div>
+      </div>
+      
+  </div>
+    <!-- <div class="form">
         <h2>Añade tus libros</h2>
-        <form>
+        <form (submit)="addlibro()">
           <label for="imagen">URL imagen</label>
           <input type="text" id="imagen" name="imagen" [(ngModel)]="newBook.photo" required>
-          <!--ngmodel se usa para vincular el valor que le damos a xejem. newbook.photo con esa propiedad-->
+          <ngmodel se usa para vincular el valor que le damos a xejem. newbook.photo con esa propiedad-->
           
-          <label for="title">Title</label>
+          <!-- <label for="title">Title</label>
           <input type="text" id="title" name="title" [(ngModel)]="newBook.title" required>
     
           <label for="id_book">Id Book</label>
           <input type="number" id="id_book" name="id_book" [(ngModel)]="newBook.id_book">
-    
-          <label for="id_user">Id User</label>
+     -->
+          <!-- <label for="id_user">Id User</label>
           <input type="number" id="id_user" name="id_user" [(ngModel)]="newBook.id_user">
     
           <label for="type">Type</label>
           <input type="text" id="type" name="type" [(ngModel)]="newBook.type" required>
-    
-          <label for="author">Author</label>
+     -->
+          <!-- <label for="author">Author</label>
           <input type="text" id="author" name="author" [(ngModel)]="newBook.author" required>
     
           <label for="price">Price</label>
           <input type="text" id="price" name="price" [(ngModel)]="newBook.price" required>
-      
-          <button type="submit" (click)="addlibro()" >Añadir libro</button>
+       -->
+          <!-- <button type="submit">Añadir libro</button>
         </form>
       </div>
-    </div>
-    <app-footer></app-footer>
-</body>
-</html>
+    </div>  -->

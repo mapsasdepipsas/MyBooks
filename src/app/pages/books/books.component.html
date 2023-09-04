@@ -1,19 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyBooks - Books</title>
-</head>
-<body>
-    <app-header></app-header>
+<div class="contenido_Books">
+  <div class="buscador">
+      <input #id_Book type="search" placeholder="Introduce el id de tu libro">
+      <button (click)="filtrarlibros(id_Book.value)">Buscar</button>
 
-    <!--añadimos el buscador por id_book(M3.5)-->
+      
+
+  </div>
+  <!-- <div *ngIf = "books.length >0" class="condicional_ngIf"> -->
+       <ng-container *ngFor="let book of books let even = even">
+         
+          <!--Aquí comunicación PADRE-HIJO 
+          donde "book","esPar","books" son los nombres de las variables
+           [book], [esPar], [books] son los atributos en corchetes están en card.componetn.ts-->
+          <!-- <app-card [book]="book" [even]="even"[books]="books" (cardborrada)="borrar($event)"></app-card> -->
+          <app-card [book]="book" [even]="even" [books]="books" (cardborrada)="borrar($event)"></app-card>
+
+          <!--Aquí comunicación HIJO-PADRE (bookEliminado)="eliminarBook($event)" proviene del hijo card.component.ts-->
+          
+      </ng-container>
+  <!-- </div> -->
+ 
+  <ng-template #mensajeNoBooks>
+    <p>No hay libros disponibles :(</p>
+    <p>Añade tus libros rellenando el formulario :)</p>
+  </ng-template>
+ 
+</div>
+
+    <!-- añadimos el buscador por id_book(M3.5)
     <div class="padre">
    
     <div class="container">
-      <!--el input de abajo para añadirle al buscador funcionalidad creada en el ts-->
-      <input type="text" name="text" class="input" required="" placeholder="Busca tu libro por su id" [(ngModel)]="buscarid" (click)="mostrarLibro()">
+      <el input de abajo para añadirle al buscador funcionalidad creada en el ts-->
+      <!-- <input type="text" name="text" class="input" required="" placeholder="Busca tu libro por su id" [(ngModel)]="buscarid" (click)="filtrarlibros()">
       <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
               <title>Search</title>
@@ -21,39 +40,29 @@
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
           </svg>
       </div>
-  </div>
+  </div> -->
 
 
 
-<div *ngIf="books.length > 0; else mensajeNoBooks"> <!--si el array books esta vacio saldra el valor de mensajeNoBooks-->
+<!-- <div *ngIf="books; else mensajeNoBooks"> <si el array books esta vacio saldra el valor de mensajeNoBooks-->
 
 
-  <div class="card-container">
+  <!-- <div class="card-container"> -->
     <!--aqui añadimos un ngfor para pasar los datos del padre (books) al hijo (card)  Retos 3.4-->
     <!--modificamos el ngfor para que el buscador funcione-->
-    <app-card *ngFor="let book of librosfiltrados; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard($event)">
-      --id_book: {{book.id_book}}
-      --id_user: {{book.id_user}}
-      --title: {{book.title}}
-      --type: {{book.type}}
-      --author: {{book.author}}
-      --price: {{book.price}}
-      --photo: {{book.photo}}
+    <!-- <app-card *ngFor="let book of books; let even = even" [book]="book" [even]="even" (cardborrada)="borrarcard(book)">
+      
     </app-card>
 
   </div>
-</div>
+</div> -->
 
 
-</div>
+<!-- </div> -->
   
 
-<ng-template #mensajeNoBooks>
+<!-- <ng-template #mensajeNoBooks>
   <p>No hay libros disponibles :(</p>
   <p>Añade tus libros rellenando el formulario :)</p>
-</ng-template>
+</ng-template> --> 
 <!--este es el valor de mensajeNoBooks, si array books esta vacio saldra el mensaje-->
-
-    <app-footer></app-footer>
-</body>
-</html>
