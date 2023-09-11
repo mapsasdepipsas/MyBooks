@@ -3,7 +3,30 @@
     <app-header></app-header> --no hace falta-->
     <div class="contenido_Books">
       <div class="formulario">
-          <form>
+
+        <form [formGroup]="libroForm" (ngSubmit)="addlibro()">
+
+          <div class="formEditar">
+            <input type="text" placeholder="Id USER" formControlName="id_user">
+            <input type="text" placeholder="title" formControlName="title">
+            <input type="text" placeholder="type" formControlName="type">
+            <input type="text" placeholder="author" formControlName="author">
+            <input type="text" placeholder="price" formControlName="price">
+            <input type="text" placeholder="photo" formControlName="photo">
+          </div>
+
+          <div class="botonesFormulario">
+            <button type="submit"> Insertar libro</button>
+          </div>
+
+        </form>
+        <div *ngIf="libroForm.get('title').errors?.required && libroForm.get('title').touched">
+          El titulo es requerido
+        </div>
+
+
+
+         <!--  <form>
               <div class="form1">
                   <div class="tituloForm"><h1>Añadir Libro</h1></div>
               </div>
@@ -26,7 +49,7 @@
   
           <div class="botonesFormulario">
               <button  type="button" class="botonesFormulario-function" (click)="addlibro(id.value, title.value, type.value, author.value, price.value, photo.value)">Insertar Libro</button>
-          </div>
+          </div> -->
       </div>
       
   </div>

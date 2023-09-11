@@ -1,4 +1,30 @@
-<form #loginForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+<!-- <form #loginForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+    <div class="formulario">
+        <div>
+        <h2>Inicia sesión</h2>
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" name="correo" [(ngModel)]="correo" email required>
+      <div *ngIf="loginForm.controls.correo.invalid && (loginForm.controls.correo.dirty || loginForm.submitted)">
+        <p *ngIf="loginForm.controls.correo.errors?.required">Correo es requerido.</p>
+        <p *ngIf="loginForm.controls.correo.errors?.email">El correo es incorrecto, debe contener una @</p>
+      </div>
+    </div>
+    <div>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="8" pattern=".*[A-Z].*"> <!--pattern es para la validacion de la letra mayuscula-->
+      <!-- <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.submitted)">
+        <p *ngIf="loginForm.controls.password.errors?.required">Contraseña es requerida.</p>
+        <p *ngIf="loginForm.controls.password.errors?.minlength">La contraseña debe tener al menos 8 caracteres.</p>
+        <p *ngIf="loginForm.controls.password.errors?.pattern">La contraseña debe contener al menos una mayúscula.</p>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
+    </div>
+
+  </form> -->
+
+
+  <form #loginForm="ngForm" (ngSubmit)="submitForm()" novalidate>
     <div class="formulario">
         <div>
         <h2>Inicia sesión</h2>

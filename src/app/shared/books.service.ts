@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class BooksService {
 //private books: Book[] = [];
-private url = "http://localhost:4000";
+private url = "http://localhost:3000";
   constructor(private http: HttpClient){} 
   // {this.books.push(
   //   new Book(7409, 0, "La casa de los espíritus", "Realismo mágico", "Isabel Allende", "12", "../../../assets/img/casaespiritus.jpg"),
@@ -18,17 +18,37 @@ private url = "http://localhost:4000";
   //   new Book(9, 32, "The Bluest Eye", "Bildungsroman", "Toni Morrison", "14", "../../../assets/img/thebluesteye.jpg")
   // )}; //añadimos aqui el array de libros para que aparezca en la pagina books. //se guarda en el servicio y dsps se le llama en books
 
+
+  getBookByIdUser(id_user: number){
+    const params = {
+      id_user: id_user
+    }
+    return this.http.get(`${this.url}/books`, {params});
+  }
+
+  getBookByIdUserAndId_book(id_user: number, id_book: number){
+
+    const params = {
+      id_user: id_user,
+      id_book
+    }
+
+    return this.http.get(`${this.url}/books`, {params});
+    
+  }
+
+
   //metodos publicos del servicio
-  getAll():Observable<Object>{
-    return this.http.get(this.url + "/books");
+  getAll(id_user: number):Observable<Object>{
+    return this.http.get(this.url + "/books/" + id_user);
   }
   //para que salgan books de array //lo llamamos en books.ts xra q salga el array
 
   // getOne(id_book: number): Book{
   //   return this.books.find(book => book.id_book == id_book)
   // }
-  getOne(id_book:number):Observable<Object>{
-    return this.http.get(this.url + '/books/' + id_book);
+  getOne(id_user:number, id_book:number):Observable<Object>{
+    return this.http.get(this.url + '/books/' + id_user + id_book);
   }
   //para buscar un book x idbook //lo llamamos en books para buscador x idbook
 

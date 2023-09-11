@@ -1,6 +1,24 @@
 <div class="contenido_Books">
   <div class="formulario">
-      <form>
+
+
+    <form [formGroup]="libroForm" (ngSubmit)="modificarlibro()">
+
+      <div class="formEditar">
+        <input type="text" placeholder="Id BooK" formControlName="id_book">
+        <input type="text" placeholder="title" formControlName="title">
+        <input type="text" placeholder="type" formControlName="type">
+        <input type="text" placeholder="author" formControlName="author">
+        <input type="text" placeholder="price" formControlName="price">
+        <input type="text" placeholder="photo" formControlName="photo">
+      </div>
+
+      <div class="botonesFormulario">
+        <button type="submit"> Modificar libro</button>
+      </div>
+
+    </form>
+     <!--  <form>
           <div class="form1">
               <div class="tituloForm"><h1>Modificar Libro</h1></div>
           </div>
@@ -19,11 +37,9 @@
               <input type="text" placeholder="Foto" #photo>
           </div>
 
-      </form>
+      </form> -->
 
-      <div class="botonesFormulario">
-          <button  type="button" class="botonesFormulario-function" (click)="modificarlibro(id.value, title.value, type.value, author.value, price.value, photo.value)">Modificar Libro</button>
-      </div>
+     
   </div>
 </div>
 

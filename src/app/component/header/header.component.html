@@ -1,14 +1,73 @@
 <div class="navegacion">
-    <h1 class="h1">MyBooks</h1>
-    <nav class="nav">
-        <a routerLink="/home" class="home">Home</a>
-        <a routerLink="/books" class="books">Books</a>
-        <a routerLink="/update-book" class="addbook">UpdateBook</a>
-        <a routerLink="/addbook" class="addbook">AddBook</a>
-        <a routerLink="/register" class="register">Register</a>
-        <a routerLink="/profile" class="profile">Profile</a>
-        <a routerLink="/login" class="login">Login</a>
-    </nav>
+  <h1 class="h1">MyBooks</h1>
+  <nav class="nav">
+      <ul>
+          <ng-container *ngIf="isUserLoggedIn(); else notLoggedIn">
+              <!-- Enlaces para usuarios conectados -->
+              <li><a routerLink="/books" class="books">Books</a></li>
+              <li><a routerLink="/update-book" class="addbook">UpdateBook</a></li>
+              <li><a routerLink="/addbook" class="addbook">AddBook</a></li>
+              <li><a routerLink="/profile" class="profile">Profile</a></li>
+          </ng-container>
+          <ng-template #notLoggedIn>
+              <!-- Enlaces para usuarios no conectados -->
+              <li><a routerLink="/home" class="home">Home</a></li>
+              <li><a routerLink="/register" class="register">Registro</a></li>
+              <li><a routerLink="/login" class="login">Login</a></li>
+          </ng-template>
+      </ul>
+  </nav>
 </div>
 
+
+
+
+<!-- <div class="navegacion">
+    <h1 class="h1">MyBooks</h1>
+    <nav class="nav">
+        <ul>
+            <div class="header__notLogin" *ngIf="!this.userService.logueado; else logueado">
+                <li><a routerLink="/home" class="home">Home</a></li>
+                <li><a routerLink="/register" class="register">Registro</a></li>
+                <li><a routerLink="/login" class="login">Login</a></li>
+            </div>
+
+            <ng-template #logueado>
+                <li><a routerLink="/profile" class="profile">Profile</a></li>
+                <li><a routerLink="/books" class="books">Books</a></li>
+                <li><a routerLink="/addbook" class="addbook">AddBook</a></li>
+                <li><a routerLink="/update-book" class="addbook">UpdateBook</a></li>
+              </ng-template>
+              </ul>
+            </nav>
+        </div> -->
+        <!-- <a routerLink="/home" class="home">Home</a>
+        <a *ngIf="user" routerLink="/books" class="books">Books</a> -->
+        <!-- <a *ngIf="user" routerLink="/update-book" class="addbook">UpdateBook</a>  -->
+        <!-- <a *ngIf="user" routerLink="/addbook" class="addbook">AddBook</a>  -->
+        <!-- <a routerLink="/register" class="register">Register</a> -->
+        <!-- <a *ngIf="user" routerLink="/profile" class="profile">Profile</a> -->
+        <!-- <a routerLink="/login" class="login">Login</a> --> 
+
+
+
+
+<!-- <header>
+    <div class="logo">MyBooks</div>
+    <nav>
+      <ul>
+        <div class="header__notLogin" *ngIf="!this.userService.logueado; else logueado">
+            <li><a routerLink="">Home</a></li>
+            <li><a routerLink="/register">Registro</a></li>
+            <li><a routerLink="/login" >Login</a></li>
+        </div>
+        <ng-template #logueado>
+        <li><a routerLink="/profile">Profile</a></li>
+        <li><a routerLink="/books">Books</a></li>
+        <li><a routerLink="/addbook">AddBook</a></li>
+        <li><a routerLink="/updatebook">UpdateBook</a></li>
+      </ng-template>
+      </ul>
+    </nav>
+  </header> -->
   
